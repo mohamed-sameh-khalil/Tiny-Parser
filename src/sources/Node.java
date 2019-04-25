@@ -10,6 +10,12 @@ public class Node {
     List<Node> children = new ArrayList<>();
     String text;
     NodeType type = NodeType.SQUARE;
+    public Node() {
+    }
+    public Node(String text) {
+        this.text = text;
+    }
+
     void draw(Graphics g, int x, int y){
         this.x = x;
         this.y = y;
