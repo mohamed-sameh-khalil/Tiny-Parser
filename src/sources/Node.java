@@ -22,4 +22,15 @@ public class Node {
         //TODO add the drawing mechanism based on the type
         //also add the text
     }
+    public String toString(){//for testing purposes only
+        StringBuilder r = new StringBuilder();
+        r.append("___"+text + "___\n");
+        for (Node n:
+             children) {
+            r.append(n.toString());
+        }
+        if(sibling != null)
+            r.append(sibling.toString());
+        return r.toString();
+    }
 }
