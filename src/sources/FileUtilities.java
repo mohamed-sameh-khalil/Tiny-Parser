@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FileUtilities {
+class FileUtilities {
     //source: https://www.journaldev.com/878/java-write-to-file
-    static void WriteToFile(String data, String filename){
+    static void writeToFile(String data, String filename){
         File file = new File(filename);
         FileWriter fw = null;
         try {
@@ -21,13 +21,13 @@ public class FileUtilities {
             //close resources
             try {
                 fw.close();
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
             }
         }
     }
     //source: https://www.journaldev.com/875/java-read-file-to-string
-    static String ReadFromFile(String filename){
+    static String readFromFile(String filename){
         String content = "";
         try {
             content = new String(Files.readAllBytes(Paths.get(filename)));
