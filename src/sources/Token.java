@@ -42,11 +42,13 @@ public class Token {
     }
     static List<Token> parseTokens(String scanned){
         List<Token> tokens = new ArrayList<>();
-        String[] arr = scanned.split("\\r?\\n");//to work on windows or linux endlines
+        String[] arr = scanned.split("\\r?\\n");//to work on windows or linux endline
         for (String str :
                 arr) {
             if(str.length() > 2)
                 tokens.add(parseToken(str));
+            else
+                System.out.println("there is a problem in the scanner output file. extra empty lines detected");
         }
         return tokens;
     }
