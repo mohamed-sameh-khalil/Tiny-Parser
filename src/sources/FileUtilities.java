@@ -9,7 +9,9 @@ import java.nio.file.Paths;
 
 class FileUtilities {
     //source: https://www.journaldev.com/878/java-write-to-file
+    private static String endl = "\r\n";
     static void writeToFile(String data, String filename){
+        data = data.replace("\n", endl);
         File file = new File(filename);
         FileWriter fw = null;
         try {
