@@ -10,6 +10,11 @@ enum type {
 public class Token {
     type t;
     String value;
+    public Token(){}
+    public Token(type t, String value){
+        this.value = value;
+        this.t = t;
+    }
     static type getType (String str){
         switch (str) {
             case "reserved" :
