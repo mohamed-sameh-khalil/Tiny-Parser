@@ -2,7 +2,7 @@ package sources;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Parser.parse();
-    }
+	public static void main(String[] args) {
+		Parser.parse();
+	}
 }
