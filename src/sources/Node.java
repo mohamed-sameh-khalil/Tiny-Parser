@@ -11,7 +11,11 @@ public class Node {
 	static final int height = 50;//ADDED
 	static final int y_gap = 50; //ADDED
 	static final int x_gap = 30; //ADDED
-	static final int fontSize = 20;//ADDED
+	static final int fontSize = 16;//ADDED
+	static final Color cir_color= Color.RED;//ADDED
+	static final Color rec_color= Color.lightGray;//ADDED
+	static final Color lin_color= Color.black;//ADDED
+
 	int x, y;
 	int level = 0; //solve y problem //ADDED
 	Node sibling = null;
@@ -28,38 +32,56 @@ public class Node {
 
 	void draw(Graphics g, int level) { //ADDED
 
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(3)); //To draw thick lines
+
 		this.level = level;
 		this.y = level * (y_gap + height);
-		this.x = Tree.last_x + width + x_gap + getNumberOfLeftChildren(this,0)*(width+x_gap);
+		//this.x = Tree.last_x + width + x_gap + (getNumberOfLeftChildren(this,0)*(width+x_gap)); //Old version
 
 		//------------DRAW Children------------\\
 		for (Node i : this.children){
 			i.draw(g,level + 1);
-			g.drawLine(x+(width/2),y+(height),i.x+(width/2),i.y);
+
+			g2.setColor(lin_color);
+			g2.setStroke(new BasicStroke(3));
+			g2.drawLine(x+(width/2),y+(height),i.x+(width/2),i.y);
+
+			//If you are asking how can i draw the line while the x isn't defined yet,
+			//well thanks to java program in repaint twice for some reason i don't know yet
+			//first time calculates the x , second time draws them right
 		}
 
 		//------------DRAW ITSELF------------\\
+		if (this.children.size() > 0)
+			this.x =((getXPosOfLastRightChildren(this) + getXPosOfLastLeftChildren(this ))/2);
+		else
+			this.x = Tree.last_x + width + x_gap;
 
 		if (type == NodeType.CIRCLE){
-			g.setColor(Color.BLUE);
-			g.drawOval(x,y,width,height);
+			g2.setColor(cir_color);
+			g2.drawOval(x,y,width,height);
 		}
 		else{
-			g.setColor(Color.BLACK);
-			g.drawRect(x,y,width,height);
+			g2.setColor(rec_color);
+			g2.drawRect(x,y,width,height);
 		}
+
 		//--------------DRAW TEXT----------\\
 		int text_width = g.getFontMetrics().stringWidth(text);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-		g.drawString(text,x+((width-text_width)/2),y+(height/2));
+		g2.setFont(new Font("TimesRoman", Font.BOLD, fontSize));
+		g2.drawString(text,x+((width-text_width)/2),y+(height/2));
 
 		Tree.last_x = getXPosOfLastRightChildren(this);
 		//------------DRAW Sibling------------\\
 		if (this.sibling != null) {
 			this.sibling.draw(g, level);
-			g.drawLine(x+width,y+(height/2),this.sibling.x,this.sibling.y+(height/2));
+
+			g2.setColor(lin_color);
+			g2.drawLine(x+width,y+(height/2),this.sibling.x,this.sibling.y+(height/2));
 		}
 	}
+
 	//ADDED
 	public int getNumberOfLeftChildren(Node node,int number){
 		if (node.children.size() == 0)
@@ -75,6 +97,15 @@ public class Node {
 			return node.x;
 		else {
 			int indexOfLastRight = node.children.size()-1;
+			return getXPosOfLastRightChildren(node.children.get(indexOfLastRight));
+		}
+	}
+	//ADDED
+	public int getXPosOfLastLeftChildren(Node node){
+		if (node.children.size()==0)
+			return node.x;
+		else {
+			int indexOfLastRight = 0;
 			return getXPosOfLastRightChildren(node.children.get(indexOfLastRight));
 		}
 	}
