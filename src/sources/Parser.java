@@ -6,7 +6,7 @@ import static sources.type.*;
 import static sources.NodeType.*;
 
 public class Parser {
-	static String inputFile = "output.txt";
+	static String inputFile = "scanned.txt";
 	static String parserOutput = "";
 	private static List<Token> tokens;
 	private static int parse_index = 0;
@@ -16,7 +16,7 @@ public class Parser {
 		Tree answer = new Tree();
 		answer.root = program();
 		System.out.println(parserOutput);
-		FileUtilities.writeToFile(parserOutput, "parse_out.txt");
+		FileUtilities.writeToFile(parserOutput, "parsed.txt");
 		System.out.println(answer);
 		return answer;
 	}
