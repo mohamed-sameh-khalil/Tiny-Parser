@@ -40,17 +40,8 @@ public class Node {
 		//this.x = Tree.last_x + width + x_gap + (getNumberOfLeftChildren(this,0)*(width+x_gap)); //Old version
 
 		//------------DRAW Children------------\\
-		for (Node i : this.children){
+		for (Node i : this.children)
 			i.draw(g,level + 1);
-
-			g2.setColor(lin_color);
-			g2.setStroke(new BasicStroke(3));
-			g2.drawLine(x+(width/2),y+(height),i.x+(width/2),i.y);
-
-			//If you are asking how can i draw the line while the x isn't defined yet,
-			//well thanks to java program in repaint twice for some reason i don't know yet
-			//first time calculates the x , second time draws them right
-		}
 
 		//------------DRAW ITSELF------------\\
 		if (this.children.size() > 0)
@@ -65,6 +56,13 @@ public class Node {
 		else{
 			g2.setColor(rec_color);
 			g2.drawRect(x,y,width,height);
+		}
+
+		//-------DRAW CHILDREN LINES----------\\\\\\\\\\\\
+		for (Node i : this.children) {
+			g2.setColor(lin_color);
+			g2.setStroke(new BasicStroke(3));
+			g2.drawLine(x + (width / 2), y + (height), i.x + (width / 2), i.y);
 		}
 
 		//--------------DRAW TEXT----------\\

@@ -10,6 +10,7 @@ public class Tree {
 	List<Integer> maxX;//list to keep all the maximum x coordinates for each level
 
 	void draw(Graphics g) {
+		Tree.last_x = 0;
 		root.draw(g,level);
 	}
 

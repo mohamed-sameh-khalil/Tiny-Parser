@@ -20,7 +20,6 @@ public class Main {
 		frame.setResizable(true);
 
 		frame.add(drawingPanel);
-		drawingPanel.repaint();
 
 		frame.setVisible(true);
 	}

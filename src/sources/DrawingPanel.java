@@ -13,7 +13,6 @@ public class DrawingPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        Tree.last_x = 0;
         tree.draw(g);
     }
 }
