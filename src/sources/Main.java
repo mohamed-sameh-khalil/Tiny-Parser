@@ -7,6 +7,15 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		try {
+			Process p = Runtime.getRuntime().exec("scanner.exe");
+			p.waitFor();
+			System.out.println("executed scanner");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+
 		Tree tree = Parser.parse();
 
 		JFrame frame = new JFrame();
