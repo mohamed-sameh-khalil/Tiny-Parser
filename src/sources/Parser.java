@@ -30,9 +30,9 @@ public class Parser {
 	static private String match(String matcher) {
 		Token tmp = current();
 		if (!tmp.value.equals(matcher))
-			tmp.value = "expecting " + matcher + " " + tmp.value;
+			tmp.value = "expecting " + matcher + " not " + tmp.value;
 		parse_index++;
-//        parserOutput += tmp.value + "\n";
+        parserOutput += tmp.value + "\n";//money line
 		return tmp.value;
 	}
 
