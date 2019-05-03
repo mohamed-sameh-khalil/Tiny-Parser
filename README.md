@@ -9,10 +9,10 @@ download the executable folder https://github.com/mohamedsameh1998/Tiny-Parser/t
 Follow the **readme.md** for extra instructions
 
 # Demo
-## GUI
+### 1. GUI
 ![image](https://user-images.githubusercontent.com/34913464/57158394-95d0be80-6de3-11e9-99e5-261b90363069.png)
 
-## text output
+### 2. text output
 ```
 entered program
 entered stmt_seq
