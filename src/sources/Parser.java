@@ -6,7 +6,7 @@ import static sources.type.*;
 import static sources.NodeType.*;
 
 public class Parser {
-	static String inputFile = "output.txt";
+	static String inputFile = "scanned.txt";
 	static String parserOutput = "";
 	private static List<Token> tokens;
 	private static int parse_index = 0;
@@ -16,7 +16,7 @@ public class Parser {
 		Tree answer = new Tree();
 		answer.root = program();
 		System.out.println(parserOutput);
-		FileUtilities.writeToFile(parserOutput, "parse_out.txt");
+		FileUtilities.writeToFile(parserOutput, "parsed.txt");
 		System.out.println(answer);
 		return answer;
 	}
@@ -30,9 +30,9 @@ public class Parser {
 	static private String match(String matcher) {
 		Token tmp = current();
 		if (!tmp.value.equals(matcher))
-			tmp.value = "expecting " + matcher + " " + tmp.value;
+			tmp.value = "expecting " + matcher + " not " + tmp.value;
 		parse_index++;
-//        parserOutput += tmp.value + "\n";
+        parserOutput += tmp.value + "\n";//money line
 		return tmp.value;
 	}
 
