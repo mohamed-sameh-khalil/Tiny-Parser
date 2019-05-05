@@ -66,6 +66,10 @@ public class Node {
 		}
 
 		//--------------DRAW TEXT----------\\
+		if (this.type == NodeType.CIRCLE)
+			g2.setColor(cir_color);
+		else
+			g2.setColor(rec_color);
 		int text_width = g.getFontMetrics().stringWidth(text);
 		g2.setFont(new Font("TimesRoman", Font.BOLD, fontSize));
 		g2.drawString(text,x+((width-text_width)/2),y+(height/2));
